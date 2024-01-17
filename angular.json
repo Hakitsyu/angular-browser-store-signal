@@ -3,5 +3,126 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "angular-browser-store-signal": {
+      "projectType": "library",
+      "root": "projects/angular-browser-store-signal",
+      "sourceRoot": "projects/angular-browser-store-signal/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/angular-browser-store-signal/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/angular-browser-store-signal/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/angular-browser-store-signal/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/angular-browser-store-signal/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "angular-browser-store-signal-showcase": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/angular-browser-store-signal-showcase",
+      "sourceRoot": "projects/angular-browser-store-signal-showcase/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/angular-browser-store-signal-showcase",
+            "index": "projects/angular-browser-store-signal-showcase/src/index.html",
+            "browser": "projects/angular-browser-store-signal-showcase/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/angular-browser-store-signal-showcase/tsconfig.app.json",
+            "assets": [
+              "projects/angular-browser-store-signal-showcase/src/favicon.ico",
+              "projects/angular-browser-store-signal-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/angular-browser-store-signal-showcase/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "angular-browser-store-signal-showcase:build:production"
+            },
+            "development": {
+              "buildTarget": "angular-browser-store-signal-showcase:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "angular-browser-store-signal-showcase:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/angular-browser-store-signal-showcase/tsconfig.spec.json",
+            "assets": [
+              "projects/angular-browser-store-signal-showcase/src/favicon.ico",
+              "projects/angular-browser-store-signal-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/angular-browser-store-signal-showcase/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }
